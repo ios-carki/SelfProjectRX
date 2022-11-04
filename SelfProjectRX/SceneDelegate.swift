@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let vc = NumberViewController()
+        let vc = CollectionMainViewController()
         
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
