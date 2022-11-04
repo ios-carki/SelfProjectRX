@@ -13,6 +13,14 @@
 		C34D2D852913CE46001A4ADB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34D2D832913CE46001A4ADB /* Main.storyboard */; };
 		C34D2D872913CE47001A4ADB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34D2D862913CE47001A4ADB /* Assets.xcassets */; };
 		C34D2D8A2913CE47001A4ADB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34D2D882913CE47001A4ADB /* LaunchScreen.storyboard */; };
+		C34D2D932913CE8E001A4ADB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D2D922913CE8E001A4ADB /* MainView.swift */; };
+		C34D2D952913CE95001A4ADB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D2D942913CE95001A4ADB /* MainViewController.swift */; };
+		C34D2D982913CF29001A4ADB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C34D2D972913CF29001A4ADB /* SnapKit */; };
+		C34D2D9B2913D19F001A4ADB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C34D2D9A2913D19F001A4ADB /* RxCocoa */; };
+		C34D2D9D2913D19F001A4ADB /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C34D2D9C2913D19F001A4ADB /* RxSwift */; };
+		C34D2DA02913D6D8001A4ADB /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D2D9F2913D6D8001A4ADB /* NumberViewController.swift */; };
+		C34D2DA22913D6DD001A4ADB /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D2DA12913D6DD001A4ADB /* NumberView.swift */; };
+		C34D2DA42913D6E4001A4ADB /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D2DA32913D6E4001A4ADB /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,11 @@
 		C34D2D862913CE47001A4ADB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C34D2D892913CE47001A4ADB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C34D2D8B2913CE47001A4ADB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C34D2D922913CE8E001A4ADB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C34D2D942913CE95001A4ADB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C34D2D9F2913D6D8001A4ADB /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
+		C34D2DA12913D6DD001A4ADB /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
+		C34D2DA32913D6E4001A4ADB /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34D2D9D2913D19F001A4ADB /* RxSwift in Frameworks */,
+				C34D2D9B2913D19F001A4ADB /* RxCocoa in Frameworks */,
+				C34D2D982913CF29001A4ADB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +72,8 @@
 		C34D2D7C2913CE46001A4ADB /* SelfProjectRX */ = {
 			isa = PBXGroup;
 			children = (
+				C34D2D9E2913D6CB001A4ADB /* Number */,
+				C34D2D912913CE81001A4ADB /* Picker */,
 				C34D2D7D2913CE46001A4ADB /* AppDelegate.swift */,
 				C34D2D7F2913CE46001A4ADB /* SceneDelegate.swift */,
 				C34D2D812913CE46001A4ADB /* ViewController.swift */,
@@ -63,8 +81,27 @@
 				C34D2D862913CE47001A4ADB /* Assets.xcassets */,
 				C34D2D882913CE47001A4ADB /* LaunchScreen.storyboard */,
 				C34D2D8B2913CE47001A4ADB /* Info.plist */,
+				C34D2DA32913D6E4001A4ADB /* BaseView.swift */,
 			);
 			path = SelfProjectRX;
+			sourceTree = "<group>";
+		};
+		C34D2D912913CE81001A4ADB /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				C34D2D922913CE8E001A4ADB /* MainView.swift */,
+				C34D2D942913CE95001A4ADB /* MainViewController.swift */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		C34D2D9E2913D6CB001A4ADB /* Number */ = {
+			isa = PBXGroup;
+			children = (
+				C34D2D9F2913D6D8001A4ADB /* NumberViewController.swift */,
+				C34D2DA12913D6DD001A4ADB /* NumberView.swift */,
+			);
+			path = Number;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +120,11 @@
 			dependencies = (
 			);
 			name = SelfProjectRX;
+			packageProductDependencies = (
+				C34D2D972913CF29001A4ADB /* SnapKit */,
+				C34D2D9A2913D19F001A4ADB /* RxCocoa */,
+				C34D2D9C2913D19F001A4ADB /* RxSwift */,
+			);
 			productName = SelfProjectRX;
 			productReference = C34D2D7A2913CE46001A4ADB /* SelfProjectRX.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +153,10 @@
 				Base,
 			);
 			mainGroup = C34D2D712913CE46001A4ADB;
+			packageReferences = (
+				C34D2D962913CF29001A4ADB /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C34D2D992913D19F001A4ADB /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = C34D2D7B2913CE46001A4ADB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,8 +185,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34D2D822913CE46001A4ADB /* ViewController.swift in Sources */,
+				C34D2D932913CE8E001A4ADB /* MainView.swift in Sources */,
 				C34D2D7E2913CE46001A4ADB /* AppDelegate.swift in Sources */,
+				C34D2DA02913D6D8001A4ADB /* NumberViewController.swift in Sources */,
 				C34D2D802913CE46001A4ADB /* SceneDelegate.swift in Sources */,
+				C34D2D952913CE95001A4ADB /* MainViewController.swift in Sources */,
+				C34D2DA22913D6DD001A4ADB /* NumberView.swift in Sources */,
+				C34D2DA42913D6E4001A4ADB /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +409,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C34D2D962913CF29001A4ADB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C34D2D992913D19F001A4ADB /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C34D2D972913CF29001A4ADB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C34D2D962913CF29001A4ADB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		C34D2D9A2913D19F001A4ADB /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C34D2D992913D19F001A4ADB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		C34D2D9C2913D19F001A4ADB /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C34D2D992913D19F001A4ADB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C34D2D722913CE46001A4ADB /* Project object */;
 }
