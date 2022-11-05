@@ -38,8 +38,8 @@ final class APIService {
                 
                 var dataList: [MyData] = []
                 for i in json.arrayValue {
-                    let userName = i["updated_at"].stringValue
-                    let userPhoto = i["profile_image"]["small"].stringValue
+                    let userName = i["user"]["name"].stringValue
+                    let userPhoto = i["urls"]["raw"].stringValue
                     let data = MyData(name: userName, photo: userPhoto)
                     dataList.append(data)
                     
