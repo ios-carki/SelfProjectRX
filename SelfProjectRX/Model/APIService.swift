@@ -9,57 +9,48 @@ import Foundation
 
 import Alamofire
 import Kingfisher
+import SwiftyJSON
+
+struct MyData: Codable {
+    let name: String
+    let photo: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case name = "username"
+//        case photo = "url"
+//    }
+}
 
 final class APIService {
     
-    private init() { }
+//    private init() { }
     
-    //func netWorkSetting(completionHanler: @escaping (String, String) -> Void) {
-    func netWorkSetting() {
-        let url = "\(APIKey.baseURL)\(APIKey.simpleURL)"
-        //        AF.request(url,
-        //                   method: .get,
-        //                   parameters: nil,
-        //                   encoding: URLEncoding.default)
-        //            .validate(statusCode: 200..<300)
-        //            .responseJSON { (json) in
-        //                print(json)
-        //                completionHanler(json.)
-        //        }
+    func netWorkSetting(completionHandler: @escaping ([MyData]) -> Void) {
         
-        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default).validate(statusCode: 200...300).responseJSON { data in
-            print(data)
+        let url = "\(APIKey.baseURL)\(APIKey.simpleURL)"
+        
+        AF.request(url, method: .get).validate(statusCode: 200...300).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+//                print("벨류값: ", value)
+                print("📕📕📕📕📕📕📕제이슨 값: ", json)
+                
+                var dataList: [MyData] = []
+                for i in json.arrayValue {
+                    let userName = i["updated_at"].stringValue
+                    let userPhoto = i["profile_image"]["small"].stringValue
+                    let data = MyData(name: userName, photo: userPhoto)
+                    dataList.append(data)
+                    
+                }
+                completionHandler(dataList)
+                
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
-    /*
-     func getTest() {
-             let url = "https://jsonplaceholder.typicode.com/todos/1"
-             AF.request(url,
-                        method: .get,
-                        parameters: nil,
-                        encoding: URLEncoding.default,
-                        headers: ["Content-Type":"application/json", "Accept":"application/json"])
-                 .validate(statusCode: 200..<300)
-                 .responseJSON { (json) in
-                     //여기서 가져온 데이터를 자유롭게 활용하세요.
-                     print(json)
-             }
-         }
-     */
-        
-        
-//        AF.request(api.url, method: .get, headers: api.headers).responseDecodable(of: Profile.self) { response in
-//
-//                    switch response.result {
-//
-//                    case .success(let data):
-//                        print(data)
-//                        completionHandler(data.user.photo, data.user.email, data.user.username)
-//                    case .failure(_):
-//                        print(response.response?.statusCode)
-//                    }
-//
-//                }
-    }
+}
 
