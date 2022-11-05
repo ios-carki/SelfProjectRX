@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class CustomCollectionView: UICollectionViewCell {
+final class CustomCollectionView: UICollectionViewCell {
     
     static let identifier = "Cell"
     

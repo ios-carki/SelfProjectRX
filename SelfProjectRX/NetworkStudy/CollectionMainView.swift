@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class CollectionMainView: BaseView {
+final class CollectionMainView: BaseView {
     
     let collectionView: UICollectionView = {
         
