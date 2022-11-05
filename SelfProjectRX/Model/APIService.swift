@@ -21,6 +21,11 @@ struct MyData: Codable {
 //    }
 }
 
+struct TMDBData: Codable {
+    let title: String
+    let image: String
+}
+
 final class APIService {
     
 //    private init() { }
@@ -34,7 +39,7 @@ final class APIService {
             case .success(let value):
                 let json = JSON(value)
 //                print("벨류값: ", value)
-                print("📕📕📕📕📕📕📕제이슨 값: ", json)
+                
                 
                 var dataList: [MyData] = []
                 for i in json.arrayValue {
@@ -46,6 +51,29 @@ final class APIService {
                 }
                 completionHandler(dataList)
                 
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func tmdbNetworking(completionHandler: @escaping ([TMDBData]) -> Void) {
+        let url = "\(TMDBKey.baseURL)\(TMDBKey.popularURL)\(TMDBKey.tmdbKEY)"
+        
+        AF.request(url, method: .get).validate(statusCode: 200...300).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("📕📕📕📕📕📕📕제이슨 값: ", json)
+                
+                var dataList: [TMDBData] = []
+                for i in json["results"].arrayValue {
+                    let userTitle = i["title"].stringValue
+                    let userImage = i["poster_path"].stringValue
+                    let data = TMDBData(title: userTitle, image: userImage)
+                    dataList.append(data)
+                }
+                completionHandler(dataList)
             case .failure(let error):
                 print(error)
             }

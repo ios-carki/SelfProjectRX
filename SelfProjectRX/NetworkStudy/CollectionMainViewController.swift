@@ -18,6 +18,7 @@ final class CollectionMainViewController: UIViewController {
     let testImages = [UIImage(systemName: "star"), UIImage(systemName: "star"), UIImage(systemName: "star"), UIImage(systemName: "star")]
     
     var netLikes: [MyData] = []
+    var tmdbData: [TMDBData] = []
     
     override func loadView() {
         view = mainView
@@ -28,10 +29,15 @@ final class CollectionMainViewController: UIViewController {
         
         collectionSetting()
         
-        APIService().netWorkSetting { [weak self] data in
-            self?.netLikes = data
+//        APIService().netWorkSetting { [weak self] data in
+//            self?.netLikes = data
+//            self?.mainView.collectionView.reloadData()
+//            //netlikes = data
+//        }
+        
+        APIService().tmdbNetworking { [weak self] data in
+            self?.tmdbData = data
             self?.mainView.collectionView.reloadData()
-            //netlikes = data
         }
     }
     
@@ -49,14 +55,17 @@ extension CollectionMainViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return netLikes.count
+        return tmdbData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionView.identifier, for: indexPath) as! CustomCollectionView
         
-        cell.likesLabel.text = netLikes[indexPath.item].name
-        cell.searchImage.kf.setImage(with: URL(string: netLikes[indexPath.item].photo))
+//        cell.likesLabel.text = netLikes[indexPath.item].name
+//        cell.searchImage.kf.setImage(with: URL(string: netLikes[indexPath.item].photo))
+        
+        cell.likesLabel.text = tmdbData[indexPath.item].title
+        cell.searchImage.kf.setImage(with: URL(string:"\(TMDBKey.posterURL)\(tmdbData[indexPath.item].image)"))
         return cell
     }
     
