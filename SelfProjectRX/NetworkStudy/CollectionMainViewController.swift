@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
 final class CollectionMainViewController: UIViewController {
     
     let mainView = CollectionMainView()
@@ -17,8 +18,8 @@ final class CollectionMainViewController: UIViewController {
     let testLikes = ["1", "2", "3", "4"]
     let testImages = [UIImage(systemName: "star"), UIImage(systemName: "star"), UIImage(systemName: "star"), UIImage(systemName: "star")]
     
-    var netLikes: [JSON] = []
-    let newImages: [JSON] = []
+    var netLikes: [String] = []
+    let newImages: [String] = []
     
     override func loadView() {
         view = mainView
@@ -43,10 +44,11 @@ final class CollectionMainViewController: UIViewController {
 //                print(json[1]["width"])
 //                print(type(of: json[0]["width"]))
 //                completionHandler(json[0]["created_at"], json[0]["urls"]["small_s3"])
-                self.netLikes.append(json[0]["created_at"])
-                self.netLikes.append(json[1]["created_at"])
-                self.netLikes.append(json[2]["created_at"])
+                self.netLikes.append(json[0]["created_at"].stringValue)
+                self.netLikes.append(json[1]["created_at"].stringValue)
+                self.netLikes.append(json[2]["created_at"].stringValue)
                 print(self.netLikes)
+                print(self.netLikes.count)
             case .failure(let error):
                 print(error)
             }
@@ -66,7 +68,7 @@ final class CollectionMainViewController: UIViewController {
 extension CollectionMainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return netLikes.count
         //return testLikes.count
     }
     
