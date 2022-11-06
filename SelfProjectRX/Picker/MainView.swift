@@ -25,15 +25,42 @@ class MainView: UIView {
         return view
     }()
     
-    let pickerView2: UIPickerView = {
-        let view = UIPickerView()
+    let tableView: UITableView = {
+        let view = UITableView()
         
         return view
     }()
     
-    let pickerView3: UIPickerView = {
-        let view = UIPickerView()
+    let testLabel: UILabel = {
+        let view = UILabel()
         
+        return view
+    }()
+    
+    let testSwitch: UISwitch = {
+        let view = UISwitch()
+        
+        return view
+    }()
+    
+    let testTextField1: UITextField = {
+        let view = UITextField()
+        view.backgroundColor = .brown
+        view.placeholder = "텍필1"
+        return view
+    }()
+    
+    let testTextField2: UITextField = {
+        let view = UITextField()
+        view.backgroundColor = .yellow
+        view.placeholder = "텍필2"
+        return view
+    }()
+    
+    let testButton: UIButton = {
+        let view = UIButton()
+        view.setTitle("버튼", for: .normal)
+        view.backgroundColor = .red
         return view
     }()
     
@@ -49,18 +76,58 @@ class MainView: UIView {
     
     
     func configureUI() {
-        [pickerView1, pickerView2, pickerView3].map {
-            stackView.addArrangedSubview($0)
+//        [pickerView1, tableView, testSwitch, testLabel].map {
+//            stackView.addArrangedSubview($0)
+//        }
+//        [testTextField1, testTextField2, testButton, testLabel].map {
+//            stackView.addArrangedSubview($0)
+//        }
+        
+        [testTextField1, testTextField2, testButton, testLabel].forEach {
+            self.addSubview($0)
         }
         
-        self.addSubview(stackView)
+        //self.addSubview(stackView)
     }
     
     func setConstraints() {
         
-        stackView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+//        stackView.snp.makeConstraints { make in
+//            make.edges.equalTo(safeAreaLayoutGuide)
+//        }
+        
+        testTextField1.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(20)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(100)
         }
+        
+        testTextField2.snp.makeConstraints { make in
+            make.top.equalTo(testTextField1.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
+        testButton.snp.makeConstraints { make in
+            make.top.equalTo(testTextField2.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
+        testLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+//        tableView.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.horizontalEdges.equalToSuperview()
+//        }
+//
+//        pickerView1.snp.makeConstraints { make in
+//            make.top.equalTo(tableView.snp.bottom)
+//            make.horizontalEdges.equalToSuperview()
+//        }
         
     }
 }
