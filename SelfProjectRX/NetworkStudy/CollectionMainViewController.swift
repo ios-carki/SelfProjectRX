@@ -23,7 +23,7 @@ final class CollectionMainViewController: UIViewController {
     
     //위치정보 + 날씨API
     var locationManager = CLLocationManager()
-    var weatherData: [WeatherData] = []
+    var weatherData: WeatherData = WeatherData(temp: 0, icon: "")
     var userLatitude: Double?
     var userLongitude: Double?
     
@@ -51,6 +51,7 @@ final class CollectionMainViewController: UIViewController {
 //        }
         
         APIService().weatherNetworking(latitude: 37.517829, longitude: 37.517829) { [weak self] data in
+            print("넘어오는 데이터 확인용📕📕📕📕📕📕📕📕📕📕📕📕 ", data)
             self?.weatherData = data
             self?.mainView.collectionView.reloadData()
         }
@@ -159,17 +160,24 @@ extension CollectionMainViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return weatherData.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionView.identifier, for: indexPath) as! CustomCollectionView
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionView.identifier, for: indexPath) as? CustomCollectionView else {
+            return UICollectionViewCell()
+        }
         
 //        cell.likesLabel.text = netLikes[indexPath.item].name
 //        cell.searchImage.kf.setImage(with: URL(string: netLikes[indexPath.item].photo))
         
-        cell.likesLabel.text = "\(weatherData[indexPath.item].temp)"//tmdbData[indexPath.item].title
-        cell.searchImage.kf.setImage(with: URL(string: "\(WeatherKey.weatherImageURL)\(weatherData[indexPath.item].icon)@2x.png"))
+//        cell.likesLabel.text = "\(weatherData[indexPath.item].temp)"//tmdbData[indexPath.item].title
+//        cell.searchImage.kf.setImage(with: URL(string: "\(WeatherKey.weatherImageURL)\(weatherData[indexPath.item].icon)@2x.png"))
+        
+        
+        cell.likesLabel.text = "\(weatherData.temp )"
+        cell.searchImage.kf.setImage(with: URL(string: "\(WeatherKey.weatherImageURL)\(weatherData.icon)@2x.png"))
+        print("\(WeatherKey.weatherImageURL)\(weatherData.icon)@2x.png")
         return cell
         //http://openweathermap.org/img/wn/01d@2x.png
     }

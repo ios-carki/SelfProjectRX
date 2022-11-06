@@ -85,7 +85,7 @@ final class APIService {
         }
     }
     
-    func weatherNetworking(latitude: Double, longitude: Double, completionHandler: @escaping ([WeatherData]) -> Void) {
+    func weatherNetworking(latitude: Double, longitude: Double, completionHandler: @escaping (WeatherData) -> Void) {
         let url = "\(WeatherKey.baseURL)lat=\(latitude)&lon=\(longitude)\(WeatherKey.query)\(WeatherKey.openWeatherKey)"
         
         AF.request(url, method: .get).validate(statusCode: 200...300).responseJSON { response in
@@ -94,14 +94,18 @@ final class APIService {
                 let json = JSON(value)
                 print("📕📕📕📕📕📕📕제이슨 값: ", json)
                 
-                var dataList: [WeatherData] = []
-                for i in json.arrayValue {
-                    let userTemp = i["main"]["temp"].doubleValue
-                    let userIcon = i["weather"]["icon"].stringValue
-                    let data = WeatherData(temp: userTemp, icon: userIcon)
-                    dataList.append(data)
-                }
-                completionHandler(dataList)
+                //var dataList: [WeatherData] = []
+//                for i in json.arrayValue {
+//                    let userTemp = i["main"]["temp"].doubleValue
+//                    let userIcon = i["weather"][0]["icon"].stringValue
+//                    let data = WeatherData(temp: userTemp, icon: userIcon)
+//                    dataList.append(data)
+//                }
+                let userTemp = json["main"]["temp"].doubleValue
+                let userIcon = json["weather"][0]["icon"].stringValue
+                let data = WeatherData(temp: userTemp, icon: userIcon)
+//                dataList.append(data)
+                completionHandler(data)
             case .failure(let error):
                 print(error)
             }
