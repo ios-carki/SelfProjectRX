@@ -26,6 +26,11 @@ struct TMDBData: Codable {
     let image: String
 }
 
+struct WeatherData: Codable {
+    let temp: Double
+    let icon: String
+}
+
 final class APIService {
     
 //    private init() { }
@@ -71,6 +76,29 @@ final class APIService {
                     let userTitle = i["title"].stringValue
                     let userImage = i["poster_path"].stringValue
                     let data = TMDBData(title: userTitle, image: userImage)
+                    dataList.append(data)
+                }
+                completionHandler(dataList)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func weatherNetworking(latitude: Double, longitude: Double, completionHandler: @escaping ([WeatherData]) -> Void) {
+        let url = "\(WeatherKey.baseURL)lat=\(latitude)&lon=\(longitude)\(WeatherKey.query)\(WeatherKey.openWeatherKey)"
+        
+        AF.request(url, method: .get).validate(statusCode: 200...300).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("📕📕📕📕📕📕📕제이슨 값: ", json)
+                
+                var dataList: [WeatherData] = []
+                for i in json.arrayValue {
+                    let userTemp = i["main"]["temp"].doubleValue
+                    let userIcon = i["weather"]["icon"].stringValue
+                    let data = WeatherData(temp: userTemp, icon: userIcon)
                     dataList.append(data)
                 }
                 completionHandler(dataList)
