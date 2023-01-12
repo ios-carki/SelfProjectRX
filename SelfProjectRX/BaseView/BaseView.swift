@@ -2,15 +2,16 @@
 //  BaseView.swift
 //  SelfProjectRX
 //
-//  Created by Carki on 2022/11/03.
+//  Created by Carki on 2023/01/11.
 //
-
 import UIKit
 
+import SnapKit
+
 class BaseView: UIView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         configureUI()
         setConstraints()
     }
@@ -19,10 +20,7 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureUI() { }
     
-    func configureUI() {
-    }
-    
-    func setConstraints() {
-    }
+    func setConstraints() { }
 }

@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     func pickerSetting() {
         
         Observable.combineLatest(mainView.testTextField1.rx.text.orEmpty, mainView.testTextField2.rx.text.orEmpty) { value1, value2 in
-            return "name은 \(value1)이고, 이메일은 \(value2) 입니다."
+            return "name은 \(value1)이고, 이메일은 \(value2) 입니다"
         }
         .bind(to: mainView.testLabel.rx.text)
         .disposed(by: disposeBag)
@@ -50,6 +50,7 @@ class MainViewController: UIViewController {
                 self.showAlert()
             }
             .disposed(by: disposeBag)
+        
     }
     
     func showAlert() {
